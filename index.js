@@ -23,7 +23,7 @@ mongoose.connect("mongodb+srv://moyemoye:moyemoye@ec.ppwpsl2.mongodb.net/").then
 
 app.get("/", (req, res) => {
 	res.send(`
-  <h1 style="display: flex; justify-content: center">API is running...</h1>
+  <h1 style="display: flex; justify-content: center">Elections api is running...</h1>
   `);
 });
 
