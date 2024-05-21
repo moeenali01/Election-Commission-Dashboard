@@ -4,9 +4,9 @@ const voterController = require("../controllers/voter.controller");
 const { verifyToken } = require("../middlewares/authorization");
 const uploadMulter = require("../middlewares/upload");
 
-router.post("/add", verifyToken, uploadMulter, voterController.create);
+router.post("/", verifyToken, uploadMulter, voterController.create);
 router.get("/", verifyToken, voterController.getAll);
-router.get("/:id", verifyToken, voterController.get);
+router.get("/:id", voterController.get);
 router.delete("/:id", verifyToken, voterController.delete);
 router.put("/:id", verifyToken, voterController.edit);
 
