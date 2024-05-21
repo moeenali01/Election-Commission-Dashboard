@@ -54,7 +54,7 @@ app.get("/", (req, res) => {
 // });
 
 app.use("/api/user", userRoutes);
-app.use("/api/user", voterRoutes);
+app.use("/api/voter", voterRoutes);
 
 // app.use(verifyToken);
 
