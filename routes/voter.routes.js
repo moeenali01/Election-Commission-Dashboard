@@ -6,7 +6,7 @@ const uploadMulter = require("../middlewares/upload");
 const validateVoter = require("../validators/voter.validator");
 const { runValidation } = require("../validators");
 
-router.post("/", verifyToken, validateVoter, runValidation, uploadMulter, voterController.create);
+router.post("/", verifyToken, uploadMulter, validateVoter, runValidation, voterController.create);
 router.get("/", verifyToken, voterController.getAll);
 router.get("/:id", voterController.get);
 router.delete("/:id", verifyToken, voterController.delete);
