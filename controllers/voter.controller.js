@@ -5,7 +5,7 @@ exports.create = async function (req, res) {
 	try {
     req.body.createdBy = req.user.id;
 		const newVoter = new Voter(req.body);
-    if (req.files) {
+    if (req.files.length > 0) {
       newVoter.fingerprint = await uploadFile(req.files[0]);
     } else {
       return res.status(400).send({ message: "Fingerprint is required", result: null });
