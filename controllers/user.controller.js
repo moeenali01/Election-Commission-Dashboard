@@ -12,20 +12,19 @@ function addDays(date, days) {
 }
 
 exports.signIn = async function (req, res) {
-	const user = await User.findOne({ cnic: req.body.cnic });
-
-	if (!user) {
-		return res.status(400).send({ message: "Cannot find user", result: false });
-	}
-
-	let isMatch;
 	try {
-		isMatch = await bcrypt.compare(req.body.password, user.password);
-	} catch (err) {
-		return res.status(401).send({ message: "Incorrect password", result: false });
-	}
+		const user = await User.findOne({ cnic: req.body.cnic });
 
-	if (isMatch) {
+		if (!user) {
+			throw new Error("Cannot find user");
+		}
+
+		const isMatch = await bcrypt.compare(req.body.password, user.password);
+
+		if (!isMatch) {
+			throw new Error("Incorrect password");
+		}
+
 		const payload = {
 			id: user._id,
 			cnic: user.cnic,
@@ -41,9 +40,10 @@ exports.signIn = async function (req, res) {
 			message: "Sign in successful",
 			result: { token, tokenExpiry }
 		});
-	}
 
-	return res.status(401).send({ message: "Incorrect password", result: false });
+	} catch (err) {
+		return res.status(400).send({ message: err.message, result: false });
+	}
 };
 
 exports.create = async function (req, res) {
