@@ -27,12 +27,6 @@ const validateVoter = [
 		.isMobilePhone()
 		.withMessage("Invalid contact number"),
 
-	check("createdBy")
-		.notEmpty()
-		.withMessage("Creator is required")
-		.isMongoId()
-		.withMessage("Invalid creator ID"),
-
 	check("fingerprint").notEmpty().withMessage("Fingerprint is required"),
 ];
 
