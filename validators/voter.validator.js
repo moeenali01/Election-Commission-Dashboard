@@ -27,7 +27,7 @@ const validateVoter = [
 		.isMobilePhone()
 		.withMessage("Invalid contact number"),
 
-	check("fingerprint").notEmpty().withMessage("Fingerprint is required"),
+	// check("fingerprint").notEmpty().withMessage("Fingerprint is required"),
 ];
 
 module.exports = validateVoter;
