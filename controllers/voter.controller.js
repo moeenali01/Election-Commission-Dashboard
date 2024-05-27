@@ -1,15 +1,15 @@
 const Voter = require("../models/voter.model");
-const { uploadFile } = require("../services/backblaze.service");
+// const { uploadFile } = require("../services/backblaze.service");
 
 exports.create = async function (req, res) {
 	try {
     req.body.createdBy = req.user.id;
 		const newVoter = new Voter(req.body);
-    if (req.files.length > 0) {
-      newVoter.fingerprint = await uploadFile(req.files[0]);
-    } else {
-      return res.status(400).send({ message: "Fingerprint is required", result: null });
-    }
+    // if (req.files.length > 0) {
+    //   newVoter.fingerprint = await uploadFile(req.files[0]);
+    // } else {
+    //   return res.status(400).send({ message: "Fingerprint is required", result: null });
+    // }
     const voter = await Voter.findOne({ cnic: req.body.cnic });
     if (voter) {
       return res.status(400).send({ message: "Duplicate key error", result: null });

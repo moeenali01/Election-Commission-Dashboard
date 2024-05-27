@@ -29,10 +29,10 @@ const userSchema = mongoose.Schema(
 			ref: "User",
 			required: true
 		},
-		fingerprint: {
-			type: String,
-			required: true
-		}
+		// fingerprint: {
+		// 	type: String,
+		// 	required: true
+		// }
 	},
 	{ timestamps: true }
 );
